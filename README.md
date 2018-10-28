@@ -34,3 +34,19 @@ highlight_file(__FILE__);
 
 ?>
 ```
+
+Here the single quote `'` is blocked by php preg_match so first we need to bypass the query 
+
+```
+select user from chal where user='\' and pw=';%00'
+```
+now `and pw=` are consider as a string and we can write our query to get try to get the flag
+i try to write the subquery to get the flag but i found that most of the sql keywords are blocked by preg_match. so i tried to pass the HEX format in the query.
+
+```
+GET /?user=\&pw=||(0x313D31);%00
+```
+it works but i did not get flag, as we need the password to print the flag, so we need to apply the brute force to get the flag.
+
+
+
